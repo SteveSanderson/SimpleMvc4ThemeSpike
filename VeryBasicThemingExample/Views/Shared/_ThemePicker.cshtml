@@ -1,0 +1,15 @@
+﻿@using VeryBasicThemingExample
+
+<div style="background-color: orange; padding: 0.5em; font-weight: bold;">
+    @using (Html.BeginForm("ChooseTheme", "ThemePicker")) {
+        <text>Pick a theme:</text>
+        @Html.DropDownList("theme", new SelectList(new[] {
+            new SelectListItem { Text = "Default", Value = "Default" },
+            new SelectListItem { Text = "Red", Value = "Red" },
+            new SelectListItem { Text = "Blue", Value = "Blue" },
+        }, "Value", "Text", ViewContext.HttpContext.CurrentTheme()));
+        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+
+        <button type="submit">Go</button>
+    }
+</div>
